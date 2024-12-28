@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SliderCard extends StatelessWidget {
     SliderCard({super.key});
@@ -69,9 +70,9 @@ class CardWidg extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, item.route, arguments: item);
+         context.push(item.route, extra: item);
       },
-      child: Expanded(
+     
         
         child:Container(
           padding: EdgeInsets.only(right:12),
@@ -105,7 +106,7 @@ class CardWidg extends StatelessWidget {
         
          ),
     
-      ),
+      
        );
   }
 

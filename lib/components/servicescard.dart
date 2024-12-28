@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Servicescard extends StatelessWidget {
    Servicescard({super.key});
@@ -66,9 +67,8 @@ class CardWidg extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.pushNamed(context, item.route, arguments: item);
+         context.push(item.route, extra: item);
       },
-      child: Expanded(
         
         child:Container(
           padding: EdgeInsets.only(right:12),
@@ -83,7 +83,7 @@ class CardWidg extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               
             ),
-            child: Flexible(
+            
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -100,14 +100,14 @@ class CardWidg extends StatelessWidget {
                 ],
               ),
             ),
-            )
+            
           ],
         ),
        
         
          ),
     
-      ),
+      
        );
   }
 
