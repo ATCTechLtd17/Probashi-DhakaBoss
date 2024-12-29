@@ -31,6 +31,7 @@ const List<Routes> routes = <Routes>[
       '/visa-verification'),
   Routes('Chat with Us', Icon(Icons.chat_outlined), '/chat'),
   Routes('Help Center', Icon(Icons.help_outline), '/help'),
+  Routes('Login', Icon(Icons.login_outlined), '/login'),
 ];
 
 class NavDrawer extends StatelessWidget {

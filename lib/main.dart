@@ -1,22 +1,30 @@
 import 'package:probashi/components/bottomnav.dart';
 import 'package:probashi/components/nav.dart';
 import 'package:probashi/models/pagestate.dart';
+import 'package:probashi/models/signinprovider.dart';
 import 'package:probashi/pages/bmet.dart';
 import 'package:probashi/pages/documents.dart';
 import 'package:probashi/pages/govt.dart';
 import 'package:probashi/pages/home.dart';
 import 'package:probashi/pages/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:probashi/pages/signin.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
   
   runApp( 
-  ChangeNotifierProvider<PageState>(
-    create: (_) => PageState(),
-    builder: (context, child) =>  const MyApp() ,
-   )
+    MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (_) => PageState(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) =>Signinprovider(),
+        )
+    ],
+    child: MyApp(),)
+  
     );
 }
 
@@ -27,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
         routerConfig: GoRouter(
-          initialLocation: '/home',
+          initialLocation: '/login',
           routes: [
             GoRoute(
               path: '/home',
@@ -52,6 +60,11 @@ class MyApp extends StatelessWidget {
               path: '/bmet',
               builder: (context, state) =>
                   const HomePageWrapper(),
+            ),
+            GoRoute(
+              path: '/login',
+              builder: (context, state) =>
+                  const Signin(),
             ),
           ],
         ),
@@ -82,6 +95,7 @@ class HomePageWrapper extends StatelessWidget {
         return Govt();
       case '/bmet':
         return BMET();
+        
       default:
         return Home();
     }
@@ -115,7 +129,8 @@ class HomePageWrapper extends StatelessWidget {
           GoRouter.of(context).go(route);
         },
       ),
-      body:getPage(pageState.currentRoute),
+      body:
+      getPage(pageState.currentRoute),
       bottomNavigationBar: BottomNav(),
     );
   }
