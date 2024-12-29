@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
         routerConfig: GoRouter(
-          initialLocation: '/login',
+          initialLocation: '/home',
           routes: [
             GoRoute(
               path: '/home',
