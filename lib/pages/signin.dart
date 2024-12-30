@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:probashi/models/signinprovider.dart';
 import 'package:provider/provider.dart';
 
@@ -149,19 +150,22 @@ class Signin extends StatelessWidget {
               Column(
                 children: [
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                          Flexible(flex: 3, child: Divider()),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Divider(
+                            height: 2,
+                          ),
                           SizedBox(width: 10),
-                          Flexible(flex: 5, child: Text('Or continue with')),
+                          Text('Or continue with'),
                           SizedBox(width: 10),
-                          Flexible(flex: 3, child: Divider()),
+                          Divider(
+                            height: 2,
+                          ),
                         ],
-                        ),
-                      ],
-                    
+                      ),
+                    ],
                   ),
                   SizedBox(height: 20),
                   Row(
@@ -360,7 +364,7 @@ Widget _buildPhoneStage(BuildContext context, Signinprovider provider) {
           style: ButtonStyle(
             alignment: Alignment.center,
             backgroundColor: WidgetStateProperty.all(
-                provider.isAgreed ? Colors.teal[400] : Colors.grey[400]),
+                provider.isAgreed  ? Colors.teal[400] : Colors.grey[400]),
             padding: WidgetStateProperty.all(
                 EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
           ),
@@ -371,7 +375,7 @@ Widget _buildPhoneStage(BuildContext context, Signinprovider provider) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                     content: Text(provider.isAgreed
-                        ? 'Phone Number is not Valid'
+                        ? 'Phone Number is empty'
                         : 'You need to check the box to continue')),
               );
             }
@@ -390,15 +394,23 @@ Widget _buildPhoneStage(BuildContext context, Signinprovider provider) {
 
 Widget _buildPasswordStage(BuildContext context, Signinprovider provider) {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+    // crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text('Enter your password'),
       SizedBox(
         height: 20,
       ),
       TextFormField(
+        showCursor: false,
+        textAlign: TextAlign.start,
         decoration: InputDecoration(
+          focusColor: Colors.grey[200],
           border: OutlineInputBorder(),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.teal[400]!,
+            ),
+          ),
         ),
         obscureText: true,
         onChanged: provider.setPasssword,
@@ -407,15 +419,26 @@ Widget _buildPasswordStage(BuildContext context, Signinprovider provider) {
         height: 20,
       ),
       ElevatedButton(
-        child: Text('Login'),
+        
+        style: ButtonStyle(
+          alignment: Alignment.bottomRight
+        ),
         onPressed: () {
           if (provider.password.isNotEmpty) {
-            print('data got');
+            context.go('/home');
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text('Succesful')));
           } else {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('provide valid')));
           }
         },
+        child: Text('Login',
+        style: TextStyle(color: Colors.teal[400],
+        fontSize: 15,
+        fontWeight: FontWeight.w600
+        ),
+        ),
       )
     ],
   );
