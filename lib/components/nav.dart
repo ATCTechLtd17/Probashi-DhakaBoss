@@ -25,7 +25,7 @@ const List<Routes> routes = <Routes>[
   Routes('Visa Verification', Icon(Icons.assignment_turned_in_outlined), '/visa-verification'),
   Routes('Chat with Us', Icon(Icons.chat_outlined), '/chat'),
   Routes('Help Center', Icon(Icons.help_outline), '/help'),
-  Routes('Login', Icon(Icons.logout_outlined), '/login'),
+  Routes('Logout', Icon(Icons.logout_outlined), '/logout'),
 ];
 
 class NavDrawer extends StatelessWidget {

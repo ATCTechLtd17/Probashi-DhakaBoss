@@ -102,83 +102,90 @@ class Document extends StatelessWidget {
               padding: EdgeInsets.all(12),
               margin: EdgeInsets.only(top: 20),
 
+
               child: SingleChildScrollView(
-                child: Stack(
-                  alignment: Alignment.center,
-                  fit: StackFit.loose,
-                  children:
-                          cardItems.asMap().map(
-                                  (index, card){
-                                return MapEntry(index, Positioned(
-                                  top: index * 80,
-                                  left: 10,
-                                  right: 10,
-                                  child: Card(
-                                    elevation: 20,
                 
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
-                                      height: 200,
-                                      
-                                      decoration: BoxDecoration(
                 
-                                          color: Colors.teal[100],
-                                          borderRadius: BorderRadius.circular(12)
+                    child: Stack(
+                      alignment: Alignment.center,
+                      fit: StackFit.loose,
+                      children:
+                      cardItems.asMap().map(
+                              (index, card){
+                            return MapEntry(index, Positioned(
+                              top: index * 80,
+                              left: 10,
+                              right: 10,
+                              child: Card(
+                                elevation: 20,
+
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  height: 200,
+
+                                  decoration: BoxDecoration(
+
+                                      color: Colors.teal[100],
+                                      borderRadius: BorderRadius.circular(12)
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(card['title'],
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(card['title'],
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+
+                                      if(card['scan']== true)
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                              shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(10)
+                                              )),
+                                              elevation: WidgetStateProperty.all(2),
+                                              padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 8)),
+                                              backgroundColor: WidgetStateProperty.all(Colors.teal[600])
                                           ),
-                
-                                          if(card['scan']== true)
-                                            ElevatedButton(
-                                              style: ButtonStyle(
-                                                  shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(10)
-                                                  )),
-                                                  elevation: WidgetStateProperty.all(2),
-                                                  padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 8)),
-                                                  backgroundColor: WidgetStateProperty.all(Colors.teal[600])
-                                              ),
-                                              onPressed: (){
-                                                //scan document
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Icon(Icons.camera_alt, color: Colors.white, size: 18),
-                                                  SizedBox(width: 8),
-                                                  Text('Scan',
-                                                    style: TextStyle(
-                                                        color: Colors.grey[100],
-                                                        fontSize: 10
-                                                    ),
-                                                  )
-                                                ],
-                
-                                              ),
-                                            ),
-                
-                                        ],
-                                      ),
-                                    ),
+                                          onPressed: (){
+                                            //scan document
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.camera_alt, color: Colors.white, size: 18),
+                                              SizedBox(width: 8),
+                                              Text('Scan',
+                                                style: TextStyle(
+                                                    color: Colors.grey[100],
+                                                    fontSize: 10
+                                                ),
+                                              )
+                                            ],
+
+                                          ),
+                                        ),
+
+                                    ],
                                   ),
                                 ),
-                                );
-                              }
-                          ).values.toList(),
+                              ),
+                            ),
+                            );
+                          }
+                      ).values.toList(),
+
+
+
+
+
+                    
+                  ),
+
                 
-                
-                
-                
-                
-                ),
+
               ),
             ),
           )

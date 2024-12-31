@@ -1,4 +1,5 @@
 import 'package:probashi/components/bottomnav.dart';
+import 'package:probashi/components/signout.dart';
 import 'package:probashi/models/pagestate.dart';
 import 'package:probashi/models/signinprovider.dart';
 import 'package:probashi/pages/bmet.dart';
@@ -69,6 +70,11 @@ class MyApp extends StatelessWidget {
               path: '/login',
               builder: (context, state) =>
                   const Signin(),
+            ),
+            GoRoute(
+              path: '/logout',
+              builder: (context, state) =>
+                  const SignOut(),
             ),
           ],
         ),
