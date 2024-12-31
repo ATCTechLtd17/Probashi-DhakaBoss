@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PageState with ChangeNotifier {
-  String _currentRoute = '/home'; 
+  String _currentRoute = '/'; 
 
   String get currentRoute => _currentRoute;
 

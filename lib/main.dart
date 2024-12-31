@@ -1,5 +1,4 @@
 import 'package:probashi/components/bottomnav.dart';
-import 'package:probashi/components/nav.dart';
 import 'package:probashi/models/pagestate.dart';
 import 'package:probashi/models/signinprovider.dart';
 import 'package:probashi/pages/bmet.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
         routerConfig: GoRouter(
-          initialLocation: '/login',
+          initialLocation: '/documents',
           routes: [
             GoRoute(
               path: '/',

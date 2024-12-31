@@ -21,81 +21,78 @@ class ProfileView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
-                  flex: 3,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          style: ButtonStyle(
-                            padding: WidgetStateProperty.all(
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-                            ),
-                            backgroundColor: WidgetStateProperty.resolveWith<Color?>(
-                              (states) {
-                                if (states.contains(WidgetState.pressed)) {
-                                  return Colors.teal[300];
-                                }
-                                return Colors.teal[400];
-                              },
-                            ),
-                            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 1),
                           ),
-                          onPressed: () {
-                            // print('English selected');
-                          },
-                          child: Text(
-                            'Eng',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
+                          backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                            (states) {
+                              if (states.contains(WidgetState.pressed)) {
+                                return Colors.teal[300];
+                              }
+                              return Colors.teal[400];
+                            },
+                          ),
+                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
                             ),
                           ),
                         ),
-                        SizedBox(width: 5),
-                        TextButton(
-                          style: ButtonStyle(
-                            padding: WidgetStateProperty.all(
-                              EdgeInsets.symmetric(horizontal: 12, vertical: 3),
-                            ),
-                            backgroundColor: WidgetStateProperty.resolveWith<Color?>(
-                              (states) {
-                                if (states.contains(WidgetState.pressed)) {
-                                  return Colors.teal[300];
-                                }
-                                return Colors.grey[400];
-                              },
-                            ),
-                            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(15), // Rounded corners
-                              ),
-                            ),
+                        onPressed: () {
+                          // print('English selected');
+                        },
+                        child: Text(
+                          'Eng',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
                           ),
-                          onPressed: () {
-                            // print('Bangla selected');
-                          },
-                          child: Text(
-                            'বাং',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white, // Text color
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      TextButton(
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                          ),
+                          backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                            (states) {
+                              if (states.contains(WidgetState.pressed)) {
+                                return Colors.teal[300];
+                              }
+                              return Colors.grey[400];
+                            },
+                          ),
+                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15), // Rounded corners
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                        onPressed: () {
+                          // print('Bangla selected');
+                        },
+                        child: Text(
+                          'বাং',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white, // Text color
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                   
@@ -124,7 +121,7 @@ class ProfileView extends StatelessWidget {
                 flex: 3,
                  child: Icon(Icons.edit,
                  size: 20,
-                 fill: 200,
+
                  ),
                )
               ],

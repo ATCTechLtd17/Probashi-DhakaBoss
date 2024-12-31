@@ -16,11 +16,22 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.teal[100],
         title: Row(
           children: [
-            Image.asset(
-              'assets/images/logo.png',
-              scale: 5,
+            Text('Probashi',
+        style: TextStyle(
+          color: Colors.teal[600]
+        ),
+        ),
+            Text('DhakaBoss',
+            style: TextStyle(
+              color: Colors.grey[400]
             ),
-          ],
+            )
+            // Image.asset(
+            //   'assets/images/logo.png',
+            //scale: 5,
+         ],
+
+
         ),
         leadingWidth: 50,
         actions: [
