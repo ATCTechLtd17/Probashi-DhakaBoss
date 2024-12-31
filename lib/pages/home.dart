@@ -4,6 +4,8 @@ import 'package:probashi/components/nav.dart';
 import 'package:probashi/components/servicescard.dart';
 import 'package:probashi/components/slidercard.dart';
 import 'package:flutter/material.dart';
+import 'package:probashi/models/pagestate.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -122,13 +124,32 @@ class Home extends StatelessWidget {
                             ),
                               ],
                             ),
-                           
+
                             TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'View all (11)',
-                                  style: TextStyle(color: Colors.grey[700]),
-                                ))
+                              onPressed: () {
+                                try {
+                                  final pageState = Provider.of<PageState>(
+                                    context,
+                                    listen: false);
+                                pageState.setRoute('/services');
+                                  GoRouter.of(context).go('/services'); 
+                                } catch (e) {
+                                  print('Error navigating to /services: $e');
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Navigation failed: $e')),
+                                  );
+                                }
+                              },
+                              child: Text(
+                                'View all (11)',
+                                style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontSize: 16, // Adjust font size if needed
+                                  fontWeight: FontWeight.w500, // Optional: Add weight for emphasis
+                                ),
+                              ),
+                            ),
+
                           ],
                         ),
                         Container(

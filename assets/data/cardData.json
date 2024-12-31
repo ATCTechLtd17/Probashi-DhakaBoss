@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Downloads Cards And Certificates",
+    "icon": 61584,
+    "route": "/bmet-form"
+  },
+  {
+    "title": "CV Builder",
+    "icon": 59638,
+    "route": "/search-job"
+  },
+  {
+    "title": "A2I",
+    "icon": 59640,
+    "route": "/pdo"
+  },
+  {
+    "title": "Brac",
+    "icon": 59491,
+    "route": "/bmet-clearance"
+  },
+  {
+    "title": "Biometric Registration",
+    "icon": 58217,
+    "route": "/bmet-clearance"
+  },
+  {
+    "title": "Downloads Cards And Certificates",
+    "icon": 61584,
+    "route": "/bmet-form"
+  },
+  {
+    "title": "CV Builder",
+    "icon": 59638,
+    "route": "/search-job"
+  },
+  {
+    "title": "A2I",
+    "icon": 59640,
+    "route": "/pdo"
+  },
+  {
+    "title": "Brac",
+    "icon": 59491,
+    "route": "/bmet-clearance"
+  },
+  {
+    "title": "Biometric Registration",
+    "icon": 58217,
+    "route": "/bmet-clearance"
+  }
+]

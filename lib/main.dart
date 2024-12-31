@@ -8,6 +8,7 @@ import 'package:probashi/pages/govt.dart';
 import 'package:probashi/pages/home.dart';
 import 'package:probashi/pages/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:probashi/pages/services.dart';
 import 'package:probashi/pages/signin.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
@@ -62,6 +63,11 @@ class MyApp extends StatelessWidget {
                   const HomePageWrapper(),
             ),
             GoRoute(
+              path: '/services',
+              builder: (context, state) =>
+              const HomePageWrapper(),
+            ),
+            GoRoute(
               path: '/bmet',
               builder: (context, state) =>
                   const HomePageWrapper(),
@@ -108,6 +114,8 @@ class HomePageWrapper extends StatelessWidget {
         return BMET();
       case '/documents':
         return Document();
+      case '/services':
+        return Services();
         
       default:
         return Home();

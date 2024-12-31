@@ -10,6 +10,13 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
      
     return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (bool didPop, route){
+        if(didPop){
+          GoRouter.of(context).pop();
+        }
+      },
+     
       child: Container(
         padding: EdgeInsets.fromLTRB(16, 100, 16, 20),
         
