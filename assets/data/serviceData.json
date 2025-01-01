@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Downloads Cards And Certificates",
+    "icon": 61584,
+    "route": "/download-card",
+    "description": "Downloads Cards and Certificates"
+  },
+  {
+    "title": "CV Builder",
+    "icon": 59638,
+    "route": "/search-job",
+    "description": "Professional Cv, Instant Success"
+  },
+  {
+    "title": "A2I",
+    "icon": 59640,
+    "route": "/pdo",
+    "description": "Find the nearest a2i Digital centers"
+  },
+  {
+    "title": "Brac",
+    "icon": 59491,
+    "route": "/bmet-clearance",
+    "description": "Find the nearest BRAC services"
+  },
+  {
+    "title": "Biometric Registration",
+    "icon": 58217,
+    "route": "/bmet-clearance",
+    "description": "Go to your nearest Demo offices"
+  },
+  {
+    "title": "Vaccine Registration",
+    "icon": 61584,
+    "route": "/bmet-form",
+    "description": "Register for mandatory COVID vaccine before flying"
+  },
+  {
+    "title": "Passport offices",
+    "icon": 59638,
+    "route": "/search-job",
+    "description": "Find the nearest Passport Office"
+  },
+  {
+    "title": "Recruitment Agencies",
+    "icon": 59640,
+    "route": "/pdo",
+    "description": "Get in touch with your nearest Recruiting Agencies"
+  },
+  {
+    "title": "Medical Centers",
+    "icon": 59491,
+    "route": "/bmet-clearance",
+    "description": "Find the nearest Medical Centers"
+  },
+  {
+    "title": "Training Center",
+    "icon": 58217,
+    "route": "/bmet-clearance",
+    "description": "Find your nearest Training centers"
+  },
+  {
+    "title": "Embassis/ Missions",
+    "icon": 58217,
+    "route": "/bmet-clearance",
+    "description": "List of all Bangladesh Embassis/Missions"
+  }
+]

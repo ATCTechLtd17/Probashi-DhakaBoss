@@ -19,7 +19,8 @@ class Document extends StatelessWidget {
       {'title': 'Experience Certificate', 'scan': true},
 
     ];
-    return Container(
+    return Scaffold( 
+      body: Container(
       padding: EdgeInsets.fromLTRB(15, 100, 15, 0),
       decoration: BoxDecoration(
         color: Colors.teal[50]
@@ -75,7 +76,7 @@ class Document extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)
                     )),
                     elevation: WidgetStateProperty.all(2),
-                    padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 8)),
+                    padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 15)),
                     backgroundColor: WidgetStateProperty.all(Colors.teal[600])
                   ),
                   onPressed: (){
@@ -149,20 +150,24 @@ class Document extends StatelessWidget {
                                                       borderRadius: BorderRadius.circular(10)
                                                   )),
                                                   elevation: WidgetStateProperty.all(2),
-                                                  padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 8)),
-                                                  backgroundColor: WidgetStateProperty.all(Colors.teal[600])
+                                                  padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 13)),
+                                                  side: WidgetStatePropertyAll(BorderSide(color: Colors.teal[300]!,
+                                                  width: 1
+                                                  )),
+                                                  backgroundColor: WidgetStateProperty.all(Colors.teal[100])
                                               ),
                                               onPressed: (){
                                                 //scan document
                                               },
                                               child: Row(
                                                 children: [
-                                                  Icon(Icons.camera_alt, color: Colors.white, size: 18),
+                                                  Icon(Icons.camera_alt, color: Colors.black, size: 18),
                                                   SizedBox(width: 8),
                                                   Text('Scan',
                                                     style: TextStyle(
-                                                        color: Colors.grey[100],
-                                                        fontSize: 10
+                                                        color: Colors.teal[700],
+                                                        fontSize: 10,
+                                                        fontWeight: FontWeight.w500
                                                     ),
                                                   )
                                                 ],
@@ -195,6 +200,7 @@ class Document extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
+    )
+ );
+     }
 }

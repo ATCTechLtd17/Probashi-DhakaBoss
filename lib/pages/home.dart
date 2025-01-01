@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:probashi/components/helpcard.dart';
 import 'package:probashi/components/nav.dart';
@@ -9,9 +12,34 @@ import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
+  // dynamically count data length
+  Future<int> loadHelpDataLength() async {
+    try {
+      final String jsonString =
+          await rootBundle.loadString('assets/data/helpData.json');
+      final List<dynamic> jsonData = jsonDecode(jsonString);
+      return jsonData.length;
+    } catch (e) {
+      print('Error loading JSON: $e');
+      return 0; // Return 0 if there's an error
+    }
+  }
+  Future<int> loadServiceDataLength() async {
+    try {
+      final String jsonString =
+          await rootBundle.loadString('assets/data/serviceData.json');
+      final List<dynamic> jsonData = jsonDecode(jsonString);
+      return jsonData.length;
+    } catch (e) {
+      print('Error loading JSON: $e');
+      return 0; // Return 0 if there's an error
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    
+
     return 
     Scaffold(
       appBar: AppBar(
@@ -140,15 +168,34 @@ class Home extends StatelessWidget {
                                   );
                                 }
                               },
-                              child: Text(
-                                'View all (11)',
-                                style: TextStyle(
-                                  color: Colors.grey[700],
-                                  fontSize: 16, // Adjust font size if needed
-                                  fontWeight: FontWeight.w500, // Optional: Add weight for emphasis
-                                ),
-                              ),
+                              child:  FutureBuilder<int>(
+                              future: loadServiceDataLength(),
+                              builder: (context, snapshot) {
+                                 if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    // Show a loading indicator while the data is being loaded
+                                    return CircularProgressIndicator();
+                                  } else if (snapshot.hasError) {
+                                    // Handle errors
+                                    return Text(
+                                      'Error loading data',
+                                      style: TextStyle(color: Colors.red),
+                                    );
+                                  } 
+                                  else{
+                                    final int length = snapshot.data ?? 0;
+                                    return Text(
+                                  'View all ($length)',
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize: 16, // Adjust font size if needed
+                                    fontWeight: FontWeight
+                                        .w500, // Optional: Add weight for emphasis
+                                  ),
+                                );}
+                              }
                             ),
+                          ),
 
                           ],
                         ),
@@ -190,12 +237,50 @@ class Home extends StatelessWidget {
                               ],
                              
                             ),
-                            TextButton(onPressed: (){},
-                             child: Text('View all (6)',
-                             style: TextStyle(
-                              color: Colors.grey[700]
-                             ),
-                             ))
+                            TextButton(
+                            onPressed: () {
+                              try {
+                                final pageState = Provider.of<PageState>(
+                                    context,
+                                    listen: false);
+                                pageState.setRoute('/help-center');
+                                GoRouter.of(context).go('/help-center');
+                              } catch (e) {
+                                print('Error navigating to /services: $e');
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text('Navigation failed: $e')),
+                                );
+                              }
+                            },
+                            child: FutureBuilder<int>(
+                              future: loadHelpDataLength(),
+                              builder: (context, snapshot) {
+                                 if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    // Show a loading indicator while the data is being loaded
+                                    return CircularProgressIndicator();
+                                  } else if (snapshot.hasError) {
+                                    // Handle errors
+                                    return Text(
+                                      'Error loading data',
+                                      style: TextStyle(color: Colors.red),
+                                    );
+                                  } 
+                                  else{
+                                    final int length = snapshot.data ?? 0;
+                                    return Text(
+                                  'View all ($length)',
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize: 16, // Adjust font size if needed
+                                    fontWeight: FontWeight
+                                        .w500, // Optional: Add weight for emphasis
+                                  ),
+                                );}
+                              }
+                            ),
+                          ),
                             
                           ],
                         ),

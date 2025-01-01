@@ -4,7 +4,9 @@ import 'package:probashi/models/pagestate.dart';
 import 'package:probashi/models/signinprovider.dart';
 import 'package:probashi/pages/bmet.dart';
 import 'package:probashi/pages/documents.dart';
+import 'package:probashi/pages/downloadcards.dart';
 import 'package:probashi/pages/govt.dart';
+import 'package:probashi/pages/helpcenter.dart';
 import 'package:probashi/pages/home.dart';
 import 'package:probashi/pages/profile.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +70,16 @@ class MyApp extends StatelessWidget {
               const HomePageWrapper(),
             ),
             GoRoute(
+              path: '/help-center',
+              builder: (context, state) =>
+              const HomePageWrapper(),
+            ),
+            GoRoute(
+              path: '/download-card',
+              builder: (context, state) =>
+              const HomePageWrapper(),
+            ),
+            GoRoute(
               path: '/bmet',
               builder: (context, state) =>
                   const HomePageWrapper(),
@@ -116,6 +128,10 @@ class HomePageWrapper extends StatelessWidget {
         return Document();
       case '/services':
         return Services();
+      case '/help-center':
+        return HelpCenters();
+      case '/download-card':
+        return DownloadCards();
         
       default:
         return Home();
@@ -123,34 +139,7 @@ class HomePageWrapper extends StatelessWidget {
   }
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.teal[100],
-      //   title: Row(
-      //     children: [
-      //       Image.asset(
-      //         'assets/images/logo.png',
-      //         scale: 5,
-      //       ),
-      //     ],
-      //   ),
-      //   leadingWidth: 50,
-      //   actions: [
-      //     IconButton(
-      //       icon: Icon(Icons.mail_outlined),
-      //       color: Colors.teal[700],
-      //       padding: const EdgeInsets.only(right: 30),
-      //       onPressed: () {
-      //         GoRouter.of(context).go('/notifications');
-      //       },
-      //     ),
-      //   ],
-      // ),
-      // drawer: NavDrawer(
-      //   onDestinationSelectedPage: (route) {
-      //     GoRouter.of(context).go(route);
-      //   },
-      // ),
-
+      
       body: getPage(pageState.currentRoute),
 
       bottomNavigationBar: BottomNav(),

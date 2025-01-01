@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:probashi/models/pagestate.dart';
+import 'package:provider/provider.dart';
 
 class Servicescard extends StatelessWidget {
   const Servicescard({super.key});
@@ -10,7 +12,7 @@ class Servicescard extends StatelessWidget {
   Future<List<CardItem>> loadJson() async {
     try {
       String jsonString =
-          await rootBundle.loadString('assets/data/cardData.json');
+          await rootBundle.loadString('assets/data/serviceData.json');
       List<dynamic> jsonData = jsonDecode(jsonString);
 
       // Convert the decoded data into a list of CardItem objects
@@ -72,7 +74,9 @@ class CardWidg extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(item.route, extra: item);
+        final pageState = Provider.of<PageState>(context, listen: false);
+        pageState.setRoute(item.route);
+        GoRouter.of(context).go(item.route);
       },
       child: Container(
         padding: EdgeInsets.only(right: 12),

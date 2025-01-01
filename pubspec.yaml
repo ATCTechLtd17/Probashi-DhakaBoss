@@ -22,5 +22,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
-    - assets/data/cardData.json
+    - assets/data/serviceData.json
+    - assets/data/helpData.json
+    - assets/data/downloadCardData.json
   
