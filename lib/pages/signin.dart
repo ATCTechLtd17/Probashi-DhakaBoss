@@ -265,130 +265,132 @@ class Signin extends StatelessWidget {
 
 //build stages
 Widget _buildPhoneStage(BuildContext context, Signinprovider provider) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text('Enter your Phone Number'),
-      SizedBox(
-        height: 10,
-      ),
-      Row(
-        children: [
-          Flexible(
-            flex: 1,
-            child: DropdownButtonFormField<String>(
-              value: provider.countryCode,
-              decoration: InputDecoration(
-                focusColor: Colors.teal[200],
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.teal[400]!,
+  return Expanded(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Enter your Phone Number'),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            Flexible(
+              flex: 1,
+              child: DropdownButtonFormField<String>(
+                value: provider.countryCode,
+                decoration: InputDecoration(
+                  focusColor: Colors.teal[200],
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.teal[400]!,
+                    ),
+                  ),
+                  fillColor: Colors.grey[200],
+                ),
+                items: ['+1', '+44', '+91', '+880', '+61', '+86'].map((code) {
+                  return DropdownMenuItem<String>(
+                    value: code,
+                    child: Text(code),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    provider.setCountryCode(newValue);
+                  }
+                },
+                dropdownColor: Colors.teal[200],
+                menuMaxHeight: 200,
+                isExpanded: false,
+                icon: Icon(Icons.arrow_drop_down, color: Colors.teal[200]),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Flexible(
+              flex: 4,
+              child: TextFormField(
+                decoration: InputDecoration(
+                  focusColor: Colors.grey[200],
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.teal[400]!,
+                    ),
                   ),
                 ),
-                fillColor: Colors.grey[200],
+                keyboardType: TextInputType.phone,
+                onChanged: provider.setPhoneNumber,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your phone number';
+                  }
+                  return null;
+                },
               ),
-              items: ['+1', '+44', '+91', '+880', '+61', '+86'].map((code) {
-                return DropdownMenuItem<String>(
-                  value: code,
-                  child: Text(code),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Row(
+          children: [
+            Checkbox(
+              value: provider.isAgreed,
+              onChanged: (val) {
+                provider.setAgreed(val ?? false);
+              },
+              activeColor: Colors.teal[400],
+            ),
+            Flexible(
+              child: Text(
+                'By clicking the box you are agreed with our terms and conditions regarding to your information',
+                style: TextStyle(
+                    color: Colors.grey[800],
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              alignment: Alignment.center,
+              backgroundColor: WidgetStateProperty.all(
+                  provider.isAgreed  ? Colors.teal[400] : Colors.grey[400]),
+              padding: WidgetStateProperty.all(
+                  EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
+            ),
+            onPressed: () {
+              if (provider.phoneNumber.isNotEmpty && provider.isAgreed) {
+                provider.nextStage();
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text(provider.isAgreed
+                          ? 'Phone Number is empty'
+                          : 'You need to check the box to continue')),
                 );
-              }).toList(),
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  provider.setCountryCode(newValue);
-                }
-              },
-              dropdownColor: Colors.teal[200],
-              menuMaxHeight: 200,
-              isExpanded: false,
-              icon: Icon(Icons.arrow_drop_down, color: Colors.teal[200]),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Flexible(
-            flex: 4,
-            child: TextFormField(
-              decoration: InputDecoration(
-                focusColor: Colors.grey[200],
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.teal[400]!,
-                  ),
-                ),
-              ),
-              keyboardType: TextInputType.phone,
-              onChanged: provider.setPhoneNumber,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your phone number';
-                }
-                return null;
-              },
-            ),
-          )
-        ],
-      ),
-      SizedBox(
-        height: 15,
-      ),
-      Row(
-        children: [
-          Checkbox(
-            value: provider.isAgreed,
-            onChanged: (val) {
-              provider.setAgreed(val ?? false);
+              }
             },
-            activeColor: Colors.teal[400],
-          ),
-          Flexible(
             child: Text(
-              'By clicking the box you are agreed with our terms and conditions regarding to your information',
+              'Continue',
               style: TextStyle(
-                  color: Colors.grey[800],
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-          )
-        ],
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            alignment: Alignment.center,
-            backgroundColor: WidgetStateProperty.all(
-                provider.isAgreed  ? Colors.teal[400] : Colors.grey[400]),
-            padding: WidgetStateProperty.all(
-                EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
-          ),
-          onPressed: () {
-            if (provider.phoneNumber.isNotEmpty && provider.isAgreed) {
-              provider.nextStage();
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                    content: Text(provider.isAgreed
-                        ? 'Phone Number is empty'
-                        : 'You need to check the box to continue')),
-              );
-            }
-          },
-          child: Text(
-            'Continue',
-            style: TextStyle(
-              color: Colors.grey[100],
+                color: Colors.grey[100],
+              ),
             ),
           ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }
 

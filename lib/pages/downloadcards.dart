@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:probashi/models/pagestate.dart';
+import 'package:probashi/models/pagetitle.dart';
 import 'package:provider/provider.dart';
 
 class DownloadCards extends StatelessWidget {
@@ -118,7 +119,12 @@ class CertItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(item.route, extra: item);
+        final pageState = Provider.of<PageState>(context, listen: false);
+        final title =  Provider.of<PageTitle>(context, listen: false);
+         title.setTitle(item.title);
+         pageState.setRoute(item.route);
+
+        GoRouter.of(context).go(item.route, extra: item.title);
       },
       child: Container(
         padding: EdgeInsets.all(8),

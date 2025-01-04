@@ -2,41 +2,41 @@
   {
     "title": "BMET Registration Card",
     "icon": 61302,
-    "route": "/bmet-form"
+    "route": "/download-card/bmet-registration"
   },
   {
     "title": "PDO Enrollment Card",
     "icon": 59057,
-    "route": "/search-job"
+    "route": "/download-card/pdo-enroll"
   },
   {
     "title": "PDO Certificate",
     "icon": 58917,
-    "route": "/pdo"
+    "route": "/download-card/pdo-cert"
    
   },
   {
     "title": "Training Enrollment Card",
     "icon": 59527,
-    "route": "/bmet-clearance"
+    "route": "/download-card/training-enroll"
    
   },
   {
     "title": "Training Certificates",
     "icon": 59403,
-    "route": "/bmet-clearance"
+    "route": "/download-card/training-cert"
    
   },
   {
     "title": "PDO Certificate (Housekeeping)" ,
     "icon": 59403,
-    "route": "/bmet-clearance"
+    "route": "/download-card/pdo-cert-housekeeping"
    
   },
   {
     "title": "BMET Clearance Card" ,
     "icon": 59403,
-    "route": "/bmet-clearance"
+    "route": "/download-card/bmet-clearance"
    
   }
 ]
