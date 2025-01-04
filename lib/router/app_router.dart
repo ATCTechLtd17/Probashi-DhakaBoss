@@ -1,5 +1,4 @@
 import 'package:probashi/components/signout.dart';
-import 'package:probashi/models/pagetitle.dart';
 import 'package:probashi/pages/documents.dart';
 import 'package:probashi/pages/downloadCards/passNidData.dart';
 import 'package:probashi/pages/downloadCards/passportData.dart';
@@ -11,7 +10,6 @@ import 'package:probashi/pages/services.dart';
 import 'package:probashi/pages/signin.dart';
 import 'package:probashi/router/donwloadcard.dart';
 import 'package:probashi/router/hompagewrapper.dart';
-import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -43,6 +41,10 @@ class AppRouter {
               builder: (context, state) => Services(),
             ),
             GoRoute(
+              path: '/download-card',
+              builder: (context, state) => DownloadCards(),
+            ),
+            GoRoute(
               path: '/help-center',
               builder: (context, state) => HelpCenters(),
             ),
@@ -50,8 +52,8 @@ class AppRouter {
               builder: (context, state, child) => DownloadCard(child: child),
               routes: [
                 GoRoute(
-                  path: '/download-card',
-                  builder: (context, state) => DownloadCards(),
+                  path: '/download-cards',
+                 builder: (context, state) => DownloadCards(),
                   routes: [
                     GoRoute(
                       path: 'bmet-clearance',

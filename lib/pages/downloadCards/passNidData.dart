@@ -1,55 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:probashi/models/pagestate.dart';
+import 'package:probashi/models/pagetitle.dart';
+import 'package:provider/provider.dart';
 
 class PassNidData extends StatelessWidget {
-  const PassNidData({super.key});
+  
+   const PassNidData({super.key});
 
   @override
+  
   Widget build(BuildContext context) {
+    final pageState = Provider.of<PageState>(context);
+  final titleProvider = Provider.of<PageTitle>(context);
+  final title =
+      titleProvider.title.isNotEmpty ? titleProvider.title : 'Default Title';
     return Scaffold( 
+       appBar: AppBar(
+        backgroundColor: Colors.teal[50],
+        title: Center(child: Text(title)),
+        leading: IconButton(
+          icon: Icon(Icons.chevron_left_outlined),
+          onPressed: () {
+            pageState.setRoute('/download-card');
+            GoRouter.of(context).pop('/download-card');
+          },
+        ),
+      ),
+    
       body: Container(
-      padding: EdgeInsets.fromLTRB(15, 100, 15, 0),
+      padding: EdgeInsets.fromLTRB(25, 100, 15, 0),
       decoration: BoxDecoration(
         color: Colors.teal[50]
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Title
-          Text('My documents',
+          Text('Enter your passport number/NID number/Birth Certificate number',
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
           ),
-          Text('Scan and store all your important documents here',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey[600],
-          ),
-          ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(5),
             child: Row(children: [
               Expanded(
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: 'Document Name',
+                    hintText: 'Enter your passport number/NID number/Birth Certificate number',
                     hintStyle: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
                       color: Colors.grey[600],
+                      overflow: TextOverflow.ellipsis,
+                      
                     ),
+                    hintMaxLines: 1,
                     border: OutlineInputBorder(
 
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Colors.teal[700]!,
                       width: 1),
 
                     ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[400]!,
+                    enabledBorder: OutlineInputBorder(
+                       borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.teal[400]!,
                       width: 1),
                     ),
                   ),
@@ -62,23 +83,22 @@ class PassNidData extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)
                     )),
                     elevation: WidgetStateProperty.all(2),
-                    padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 5, horizontal: 15)),
+                    padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 8, horizontal: 15)),
                     backgroundColor: WidgetStateProperty.all(Colors.teal[600])
                   ),
                   onPressed: (){
                 //scan document
               },
-              child: Row(
-                  children: [
-                    Icon(Icons.camera_alt, color: Colors.white, size: 18),
-                    SizedBox(width: 8),
-                    Text('Scan',
+              child: Container(
+                padding: EdgeInsets.all(8),
+                  child: 
+                    Text('Search',
                     style: TextStyle(
                       color: Colors.grey[100],
                       fontSize: 10
                     ),
-                    )
-                  ],
+                    ),
+                  
 
               ),
               ),
