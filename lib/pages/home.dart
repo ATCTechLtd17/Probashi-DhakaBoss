@@ -42,6 +42,7 @@ class Home extends StatelessWidget {
 
     return 
     Scaffold(
+      backgroundColor: Colors.teal[50],
       appBar: AppBar(
         backgroundColor: Colors.teal[100],
         title: Row(
@@ -83,16 +84,11 @@ class Home extends StatelessWidget {
      
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[100],
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          // child: Container(
-          //   decoration: BoxDecoration(
-          //     color: Colors.grey[100],
-              
-          //   ),
+          
            child: Column(
              children: [
                Container(

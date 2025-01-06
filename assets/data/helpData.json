@@ -2,31 +2,31 @@
   {
     "title": "Verify Documents",
     "icon": 61302,
-    "route": "/bmet-form",
+    "route": "/help/verify-docs",
     "description": "You can verify and authenticity of documents by scanning the QR Code"
   },
   {
     "title": "Checklist",
     "icon": 59057,
-    "route": "/search-job",
+    "route": "/help/checklist",
     "description": "Overseas job guide"
   },
   {
     "title": "Chat with us",
     "icon": 58917,
-    "route": "/pdo",
+    "route": "/help/chat",
     "description": "Talk to our customer service team"
   },
   {
     "title": "FAQ",
     "icon": 59527,
-    "route": "/bmet-clearance",
+    "route": "/help/faq",
     "description": "Frequently asked question regarding employment abroad"
   },
   {
     "title": "Country Specific regulations",
     "icon": 59403,
-    "route": "/bmet-clearance",
+    "route": "/help/country-regulations",
     "description": "Country specific travel, work and living regulations"
   }
 ]

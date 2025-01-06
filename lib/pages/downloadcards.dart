@@ -83,8 +83,8 @@ class DownloadCards extends StatelessWidget {
                 onPressed: () {
                   final pageState =
                       Provider.of<PageState>(context, listen: false);
-                  pageState.setRoute('/home');
-                  GoRouter.of(context).go('/home');
+                  pageState.setRoute('/services');
+                  GoRouter.of(context).go('/services');
                 },
                 style: ButtonStyle(
                     iconSize: WidgetStateProperty.all(30),

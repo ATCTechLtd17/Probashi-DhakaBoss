@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:probashi/models/pagestate.dart';
+import 'package:probashi/models/pagetitle.dart';
+import 'package:provider/provider.dart';
 
 class HelpCard extends StatelessWidget {
   const HelpCard({super.key});
@@ -72,7 +75,12 @@ class CardWidg extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(item.route, extra: item);
+        final pageState = Provider.of<PageState>(context, listen: false);
+        final title = Provider.of<PageTitle>(context, listen: false);
+        title.setTitle(item.title);
+        pageState.setRoute(item.route);
+
+        GoRouter.of(context).go(item.route, extra: item.title);
       },
       child: Container(
         padding: EdgeInsets.only(right: 12),

@@ -21,7 +21,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/scan.png
     - assets/images/logo.png
+    - assets/images/verify_phone_human.jpg
     - assets/data/serviceData.json
     - assets/data/helpData.json
     - assets/data/downloadCardData.json

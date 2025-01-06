@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:probashi/models/pagestate.dart';
+import 'package:probashi/models/pagetitle.dart';
 import 'package:provider/provider.dart';
 
 class HelpCenters extends StatelessWidget {
@@ -62,8 +63,8 @@ class HelpCenters extends StatelessWidget {
                 onPressed: () {
                   final pageState =
                       Provider.of<PageState>(context, listen: false);
-                  pageState.setRoute('');
-                  GoRouter.of(context).pop();
+                  pageState.setRoute('/home');
+                  GoRouter.of(context).go('/home');
                 },
                 style: ButtonStyle(
                     iconSize: WidgetStateProperty.all(30),
@@ -103,7 +104,12 @@ class CenterItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(item.route, extra: item);
+         final pageState = Provider.of<PageState>(context, listen: false);
+        final title = Provider.of<PageTitle>(context, listen: false);
+        title.setTitle(item.title);
+        pageState.setRoute(item.route);
+
+        GoRouter.of(context).go(item.route, extra: item.title);
       },
       child: Container(
         padding: EdgeInsets.all(8),
@@ -113,8 +119,7 @@ class CenterItem extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(15),
           width: double.infinity,
-          height: 80,
-          clipBehavior: Clip.antiAlias,
+          height:100,
           decoration: BoxDecoration(
             color: Colors.teal[100],
             borderRadius: BorderRadius.circular(10),
@@ -130,36 +135,43 @@ class CenterItem extends StatelessWidget {
               SizedBox(
                 width: 15,
               ),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(
-                  item.title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
+              Flexible(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    item.title,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.start,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
-                  textAlign: TextAlign.start,
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-               Text(
-                item.description,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey[700],
-                ),
-                textAlign: TextAlign.start,
-                softWrap: true,
-                overflow: TextOverflow.fade,
-                maxLines: 3,
-                
-                                ),
-              ]),
+                  SizedBox(
+                    height: 5,
+                  ),
+                 Flexible(
+                   fit: FlexFit.loose,
+                   child: Column(
+                     children: [
+                       Text(
+                        item.description,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[700],
+                        ),
+                        textAlign: TextAlign.start,
+                        softWrap: true,
+
+                                        ),
+                     ],
+                   ),
+                 ),
+                ]),
+              ),
             ],
           ),
         ),

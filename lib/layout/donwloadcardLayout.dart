@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DownloadCard extends StatelessWidget {
+class DownloadCardLayout extends StatelessWidget {
   final Widget child;
 
-  const DownloadCard({super.key, required this.child});
+  const DownloadCardLayout({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

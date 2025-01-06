@@ -62,8 +62,8 @@ class Services extends StatelessWidget {
                 
                 final pageState =
                         Provider.of<PageState>(context, listen: false);
-                    pageState.setRoute('');
-                    GoRouter.of(context).pop();
+                    pageState.setRoute('/home');
+                    GoRouter.of(context).go('/home');
               },
               style: ButtonStyle(
                 iconSize: WidgetStateProperty.all(30),

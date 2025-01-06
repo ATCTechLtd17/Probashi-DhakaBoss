@@ -1,15 +1,21 @@
 import 'package:probashi/components/signout.dart';
+import 'package:probashi/layout/helpLayout.dart';
 import 'package:probashi/pages/documents.dart';
 import 'package:probashi/pages/downloadCards/passNidData.dart';
 import 'package:probashi/pages/downloadCards/passportData.dart';
 import 'package:probashi/pages/downloadcards.dart';
+import 'package:probashi/pages/helpItems/chat.dart';
+import 'package:probashi/pages/helpItems/checklist.dart';
+import 'package:probashi/pages/helpItems/countryRegulations.dart';
+import 'package:probashi/pages/helpItems/faq.dart';
+import 'package:probashi/pages/helpItems/verifyDocs.dart';
 import 'package:probashi/pages/helpcenter.dart';
 import 'package:probashi/pages/home.dart';
 import 'package:probashi/pages/profile.dart';
 import 'package:probashi/pages/services.dart';
 import 'package:probashi/pages/signin.dart';
-import 'package:probashi/router/donwloadcard.dart';
-import 'package:probashi/router/hompagewrapper.dart';
+import 'package:probashi/layout/donwloadcardLayout.dart';
+import 'package:probashi/layout/hompagewrapper.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -48,8 +54,44 @@ class AppRouter {
               path: '/help-center',
               builder: (context, state) => HelpCenters(),
             ),
+            //Help Center items route
             ShellRoute(
-              builder: (context, state, child) => DownloadCard(child: child),
+              builder: (context, state, child) => HelpLayout(child: child),
+              routes: [
+                GoRoute(
+                  path: '/help',
+                 builder: (context, state) => HelpCenters(),
+                  routes: [
+                    GoRoute(
+                      path: 'verify-docs',
+                      builder: (context, state) => VerifyDocs(),
+                    ),
+                    GoRoute(
+                      path: 'checklist',
+                      builder: (context, state) => Checklist(),
+                    ),
+                    GoRoute(
+                      path: 'chat',
+                      builder: (context, state) {
+                        return Chat();
+                      },
+                    ),
+                    GoRoute(
+                      path: 'faq',
+                      builder: (context, state) => FAQ(),
+                    ),
+                    GoRoute(
+                      path: 'country-regulations',
+                      builder: (context, state) => CountryRegulations(),
+                    ),
+                    
+                  ],
+                ),
+              ],
+            ),
+            //Service Items route
+            ShellRoute(
+              builder: (context, state, child) => DownloadCardLayout(child: child),
               routes: [
                 GoRoute(
                   path: '/download-cards',
